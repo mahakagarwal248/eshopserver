@@ -22,13 +22,9 @@ app.use("/api/profile", require("./routes/ProfileAPI"));
 app.use("/api/cart", require("./routes/cartAPI"));
 app.use("/api/payment", require("./routes/PaymentAPI"));
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("Client/build"));
-    app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "Client", "build", "index.html"));
-    });
-  }
-
+app.get("/", (req, res)=>{
+    res.send("App is up");
+});
 app.listen(port, ()=>{
     console.log(`Server is listening `)
 });
